@@ -1,29 +1,28 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
 <h1>WeakRef</h1>
 
 <p>
-  見出し文章
+  他のオブジェクトへの弱参照を持つ
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
-  </div>
-
-  <style>
-    div {
-      color: red;
-    }
-  </style>
-
+<template class="playground" data-tab="script">
   <script>
-    console.log('hoge')
+    let buffer = new ArrayBuffer(100000000)
+
+    const ref = new WeakRef(buffer)
+    console.log(ref.deref())
+
+    buffer = null
+    setTimeout(() => console.log(ref.deref()), 300)
   </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
+  NG: Safari
+
   しゃべる内容２
 </div>

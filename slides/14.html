@@ -1,29 +1,36 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
 <h1>:has()</h1>
 
 <p>
-  見出し文章
+  指定した条件を内包する場合にマッチする
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
-  </div>
+<template class="playground" data-tab="css">
+  <label>
+    <input type="checkbox">
+    チェックボックス
+  </label>
 
   <style>
-    div {
-      color: red;
+    label:has(input:checked) {
+      background: #ef484680;
     }
   </style>
-
-  <script>
-    console.log('hoge')
-  </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
-  しゃべる内容２
+  [Editor’s Draft]
+
+  has()はセレクターで、自分より後の条件を見ます。
+
+  例えばこのチェックボックスはラベルの内側にいるんですけど、チェックボックスがオンになると、外側のラベルが赤くなるという動きになります。
+  今はならないですけど。
+
+  CSSは基本的に、自分か、親の条件を見るしか無かったんですけど、has()を使えば子孫を条件に出来ます。
+  いや本当に、これが出来れば、って思える場面はすごく多いので、もうずっと待ち侘びてます。
+  ただパフォーマンス結構悪くなるんじゃないのって話もあるみたいですね。
 </div>

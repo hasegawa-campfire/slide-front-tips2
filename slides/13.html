@@ -1,29 +1,35 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
 <h1>CSS Nesting Module</h1>
 
 <p>
-  見出し文章
+  Sassのようにネストの形で定義する
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
-  </div>
+<template class="playground" data-tab="css">
+  <img class="box" width="300" height="300">
 
   <style>
-    div {
-      color: red;
+    .box {
+      background: #ef4846;
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
   </style>
-
-  <script>
-    console.log('hoge')
-  </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
+  [Editor's Draft]
+
+  Sassのようにネストの形でCSSが書けます。
+  これがCSSに無いからSassを使うという人もそれなりに多いんじゃないでしょうか。
+  だいたいSassの感覚で書けるようになるそうです。
+  待ち遠しいですね。
+
   CSS変数
 </div>

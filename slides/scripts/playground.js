@@ -21,11 +21,39 @@ button, input, select, textarea {
   font-family: inherit;
   font-size: 100%;
 }
+
+pre.console-log {
+  position: relative;
+}
+
+pre.console-log + pre.console-log {
+  margin-top: 2em;
+}
+
+pre.console-log + pre.console-log::before {
+  content: '';
+  display: block;
+  border-top: 4px #eee dashed;
+  position: absolute;
+  top: -1em;
+  left: 0;
+  right: 0;
+}
 </style>
 
 <script>
 const $ = (sel, el = document) => el.querySelector(sel)
 const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel))
+console.log = (...values) => {
+  for (const value of values) {
+    const pre = document.createElement('pre')
+    pre.className = 'console-log'
+    pre.textContent = value && (value.constructor === Object || !value.constructor)
+      ? JSON.stringify(value, null, '  ')
+      : String(value)
+    document.body.append(pre)
+  }
+}
 </script>
 `
 
@@ -37,13 +65,21 @@ function $$(sel, el = document) {
   return Array.from(el.querySelectorAll(sel))
 }
 
+function getText(el) {
+  el = el.cloneNode(true)
+  for (const div of el.querySelectorAll('div')) {
+    div.before(document.createTextNode('\n'))
+  }
+  return el.textContent
+}
+
 function flatIndent(text) {
   text = text.split(/[\r\n]/).map(s => s.trim() ? s : '').join('\n').replace(/^\n+|\n+$/g, '')
   const indent = text.match(/^ */)[0].length
   return text.replace(new RegExp(`^ {0,${indent}}`, 'gm'), '')
 }
 
-for (const $temp of document.querySelectorAll('template.playground')) {
+for (const $temp of $$('template.playground')) {
   $temp.insertAdjacentHTML('afterend', `
     <div class="playground">
       <iframe class="preview"></iframe>
@@ -66,13 +102,15 @@ for (const $temp of document.querySelectorAll('template.playground')) {
     $codes[1].textContent = $$('style', node.content).map(el => (el.remove(), flatIndent(el.innerHTML))).join('')
     $codes[2].textContent = $$('script', node.content).map(el => (el.remove(), flatIndent(el.innerHTML))).join('')
     $codes[0].textContent = flatIndent(node.innerHTML)
-    $preview.style.width = '';
-    updatePreview()
-    $codes[0].scrollTop = 0
-    $codes[1].scrollTop = 0
-    $codes[2].scrollTop = 0
+    $preview.style.width = $temp.dataset.width || '';
+    $preview.style.height = $temp.dataset.height || '';
     $preview.contentWindow.document.scrollingElement.scrollTop = 0
+    updatePreview()
     selectTab(Math.max(0, ['html', 'css', 'script'].indexOf($temp.dataset.tab)))
+    for (let i = 0; i < 3; i++) {
+      if (!$codes[i].textContent) $tabs[i].remove()
+      $codes[i].scrollTop = 0
+    }
   }
 
   function selectTab(index) {
@@ -88,7 +126,8 @@ for (const $temp of document.querySelectorAll('template.playground')) {
       ${suffixPreview}
       <style>${$codes[1].textContent}</style>
       ${$codes[0].textContent}
-      <script>${$codes[2].textContent}</script>
+      <div id="$dummy"></div>
+      <script>$dummy.remove();${getText($codes[2])}</script>
     `
     const url = URL.createObjectURL(new Blob([fixedUrl(html)], { type: 'text/html' }))
     $preview.contentWindow.location.replace(url)

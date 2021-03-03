@@ -1,31 +1,30 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
 <h1>inset</h1>
 
 <p>
-  見出し文章
+  top, right, bottom, leftをまとめて指定する
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
-  </div>
-  <output id="$out"></output>
+<template class="playground" data-tab="css">
+  <div class="fill"></div>
 
   <style>
-    div {
-      color: red;
+    .fill {
+      position: absolute;
+      inset: 0;
+      background: #ef4846;
     }
   </style>
-
-  <script>
-    console.log('hoge')
-    $out.value = 'hogehoge'
-  </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
+  [Editor's Draft]
+  NG: Safari, EDGE(要フラグ)
+
   しゃべる内容２
+  PostCSSを使おう
 </div>

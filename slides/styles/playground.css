@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto+Mono&display=swap');
-@import url(page-wave.css);
 
 html {
   background-position: right 50px top 50px, 0% 22%;
@@ -21,7 +20,8 @@ html {
   grid-row: span 2;
   align-self: stretch;
   display: block;
-  width: 500px;
+  width: 550px;
+  padding-right: 32px;
   margin-right: 32px;
   border: none;
   resize: horizontal;
@@ -53,7 +53,7 @@ code {
   white-space: pre;
   font-family: 'Roboto Mono', 'Noto Sans JP', monospace;
   font-size: 25px;
-  line-height: 1.4;
+  line-height: 1.8;
   outline: none;
   cursor: text;
 }

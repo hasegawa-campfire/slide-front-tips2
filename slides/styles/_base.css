@@ -3,11 +3,12 @@
 :root {
   --color-yellow: #fac75b;
   --color-red: #ef4846;
+  --color-blue: #307bf6;
   --gradient-linear: linear-gradient(135deg, var(--color-yellow), var(--color-red));
   --color-text: #4d4a4a;
   --color-text-invert: #fff;
   --color-text-light: #b3b3b3;
-  --color-bg-light: #f3f3f3f3;
+  --color-bg-light: #eee;
 }
 
 *,
@@ -36,4 +37,8 @@ select,
 textarea {
   font-family: inherit;
   font-size: 100%;
+}
+
+a {
+  color: var(--color-blue);
 }

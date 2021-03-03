@@ -1,29 +1,31 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
-<h1>Web Sharing</h1>
+<h1>Web Share API</h1>
 
 <p>
-  見出し文章
+  システムのシェア機能を利用する
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
-  </div>
-
-  <style>
-    div {
-      color: red;
-    }
-  </style>
+<template class="playground" data-tab="script">
+  <button id="$share">シェア</button>
 
   <script>
-    console.log('hoge')
+    $share.onclick = () => {
+      navigator.share({
+        title: 'シェアサンプル',
+        text: 'OSのシェア機能が呼び出されます',
+        url: 'https://example.com/',
+      })
+    }
   </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
+  [Draft]
+  NG: Chrome(Mac), Firefox
+
   しゃべる内容２
 </div>

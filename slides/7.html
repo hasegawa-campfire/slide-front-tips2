@@ -1,29 +1,34 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
 <h1>paint-order</h1>
 
 <p>
-  見出し文章
+  塗りつぶしや輪郭の、描画の順序を指定する
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
-  </div>
+<template class="playground" data-tab="css">
+  <svg viewBox="0 0 120 90" font-weight="bold">
+    <text y="25">TEXT</text>
+    <text y="55" class="stroke">TEXT</text>
+    <text y="85" class="stroke order">TEXT</text>
+  </svg>
 
   <style>
-    div {
-      color: red;
+    .stroke {
+      stroke: #ef4846;
+      stroke-width: 2px;
+    }
+    .order {
+      paint-order: stroke fill;
     }
   </style>
-
-  <script>
-    console.log('hoge')
-  </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
+  NG: -
+
   text-stroke
 </div>

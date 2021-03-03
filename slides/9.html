@@ -1,29 +1,36 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
-<h1>正規表現の名前付きキャプチャ</h1>
+<h1>正規表現の後読みと、名前付きキャプチャ</h1>
 
 <p>
-  見出し文章
+  文字列の中で、指定した文字の直後を表す<br>
+  キャプチャに名前を付けて参照する
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
-  </div>
-
-  <style>
-    div {
-      color: red;
-    }
-  </style>
-
+<template class="playground" data-tab="script">
   <script>
-    console.log('hoge')
+    const text1 = 'CAMPFIRE MEETUP'
+    const re1 = /(?<=M)/g
+    console.log(text1.replace(re1, '@'))
+
+    const text2 = '2021-02-18'
+    const re2 = /(?<year>\d+)-(?<month>\d+)-(?<day>\d+)/
+    console.log(text2.match(re2).groups)
   </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
-  正規表現の後読み
+  NG: Safari (後読みのみ)
+
+  正規表現の後読みです。
+  javascriptには長らくありませんでしたが、ようやく使えるようになりました。
+
+  正規表現の後読み、は特定の文字の直後のポイントを指すものです。
+  この例だとABCDEFGとあって、ABCDの直後を探すわけだから、つまりDとEの間の隙間を指すことになります。
+  なのでアットマークが挟まってますね。
+
+  何かの文字の後の何か、という探し方は本当によくあるので、まさに待望のという感じです。
 </div>

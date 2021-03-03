@@ -1,12 +1,12 @@
 @import url(_base.css);
 
 body {
-  margin: 150px 50px 100px;
+  margin: 150px 50px 0;
   padding: 0;
 }
 
 body::before {
-  content: '2021@CAMPFIRE.inc';
+  content: '2021@CAMPFIRE, inc.';
   display: block;
   position: absolute;
   bottom: 50px;

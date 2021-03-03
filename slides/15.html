@@ -1,29 +1,75 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
 <h1>leading-trim</h1>
 
 <p>
-  見出し文章
+  テキストの表示の高さから不要なスペースを削る
+    （<a href="https://medium.com/microsoft-design/leading-trim-the-future-of-digital-typesetting-d082d84b202" target="_blank">参考</a>）
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
+<template class="playground" data-tab="css" data-width="750px">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto&display=swap" rel="stylesheet">
+
+  <div class="list">
+    <small><b>normal</b>&nbsp;&nbsp;(Roboto)</small>
+    <small>(Noto Sans JP)</small>
+    <div class="text roboto">TEXT</div>
+    <div class="text noto-sans">TEXT</div>
+    <small><b>leading-trim</b>&nbsp;&nbsp;(Roboto)</small>
+    <small>(Noto Sans JP)</small>
+    <div class="text roboto leading-trim">TEXT</div>
+    <div class="text noto-sans leading-trim">TEXT</div>
   </div>
 
   <style>
-    div {
-      color: red;
+    .leading-trim {
+      text-edge: cap alphabetic;
+      leading-trim: both;
+    }
+    .text {
+      background-color: #ef484640;
+      font-size: 140px;
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .list {
+      width: max-content;
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 0 30px;
+    }
+
+    .roboto {
+      font-family: 'Roboto', sans-serif;
+    }
+    .noto-sans {
+      font-family: 'Noto Sans JP', sans-serif;
     }
   </style>
-
-  <script>
-    console.log('hoge')
-  </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
-  しゃべる内容２
+  [Editor’s Draft]
+
+  これはもう私の資料なんかよりも参考を見たほうが遥かに素晴らしいので、開きます。
+  夜に見かけて、一気に目がさめた素晴らしい資料です。
+
+  これCSS的には全部32pxの隙間になってるんですが、実際にはこんなバラバラの隙間に見えてしまいます。
+  これはフォントによって固有のスペースが上下にあるからなんですが、それを削ぎ落とすのがLeading-trimになります。
+  それによって整ったマージンを簡単に実現できるようになります。
+  縦の中央揃いもそうですね。CSS的には真ん中のハズなのにどう見ても上や下に寄っている。そんな事もこれで解決します。
+
+  -----------------
+
+  これは本当にフロント実装で毎度毎度しんどい所なので、一刻も早く使えるようになる日を待っています。
+
+  そんな訳でサンプル。2種類のフォント比較です。下がnoto sans。上がシステムデフォルト。
+  上下のスペースがまるで違いますね。
+  ブラウザのフォントはWebフォントでも使わない限り、必ずバラバラになる訳で、そんな中で上下のズレを調整するのがいかに不毛であるか、分かるんじゃないでしょうか。
+
+  いや、早く使いたいですね、ほんと。
 </div>

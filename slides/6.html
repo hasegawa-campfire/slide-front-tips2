@@ -1,29 +1,34 @@
+<link rel="stylesheet" href="styles/page-wave.css">
 <link rel="stylesheet" href="styles/playground.css">
 
 <h1>aspect-ratio</h1>
 
 <p>
-  見出し文章
+  表示のアスペクト比を指定する
 </p>
 
-<template class="playground">
-  <div>
-    ほげほげ
-  </div>
+<template class="playground" data-tab="css">
+  <div class="box"></div>
 
   <style>
-    div {
-      color: red;
+    .box {
+      aspect-ratio: 2 / 1;
+      background: #ef4846;
     }
   </style>
-
-  <script>
-    console.log('hoge')
-  </script>
 </template>
 
-<script src="scripts/common.js"></script>
+<script src="scripts/playground.js"></script>
 
 <div class="slide-note">
-  しゃべる内容２
+  [Editor's Draft]
+  NG: Safari, Firefox(要フラグ)
+
+  aspect-ratio。表示の縦横比を指定できます。
+  一応、将来的な仕様ですがchromeでは既に使えたりします。
+
+  今まで、こういう事にはpaddingがよく使われてきました。
+  paddingにはパーセント指定すると必ず横幅を基準にするという謎仕様があるからなんですが、 ただ使い勝手としてはちょっと微妙で。
+
+  それがようやくマトモにシンプルに実現できる。ありがたい事です。
 </div>
