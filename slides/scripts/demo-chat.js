@@ -6,7 +6,7 @@ async function standby() {
   abortController = new AbortController()
 
   try {
-    const res = await fetch('https://ppng.io/slide-chat-html', {
+    const res = await fetch('https://ppng.io/slide-chat-messages', {
       signal: abortController.signal,
     })
     const data = await res.json()

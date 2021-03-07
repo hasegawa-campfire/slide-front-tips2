@@ -24,7 +24,7 @@ function send(node) {
 
   clearTimeout(debounceId)
   debounceId = setTimeout(() => {
-    fetch('https://ppng.io/slide-chat-html', {
+    fetch('https://ppng.io/slide-chat-messages', {
       method: 'POST',
       body: JSON.stringify({ items: buff }),
     })
