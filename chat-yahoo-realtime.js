@@ -1,7 +1,7 @@
 const $autoscroll = document.querySelector('.Autoscroll')
 
 let debounceId = null
-let buff = ''
+let buff = []
 
 function reverse(items) {
   return Array.from(items).reverse()
@@ -16,21 +16,19 @@ function send(node) {
     node.remove()
   }
 
-  buff += `
-    <div class="comment">
-      <img class="icon" src="${$icon.src}">
-      <div class="name">${$name.innerHTML}</div>
-      <div class="body">${$body.innerHTML}</div>
-    </div>
-  `.replace(/\s+/g, ' ')
+  buff.push({
+    icon: $icon.src,
+    name: $name.innerHTML,
+    body: $body.innerHTML,
+  })
 
   clearTimeout(debounceId)
   debounceId = setTimeout(() => {
     fetch('https://ppng.io/slide-chat-html', {
       method: 'POST',
-      body: buff,
+      body: JSON.stringify({ items: buff }),
     })
-    buff = ''
+    buff = []
   }, 300)
 }
 

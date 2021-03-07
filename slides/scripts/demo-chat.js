@@ -9,9 +9,18 @@ async function standby() {
     const res = await fetch('https://ppng.io/slide-chat-html', {
       signal: abortController.signal,
     })
-    const value = await res.text()
+    const data = await res.json()
     const isBottom = ($chat.scrollTop + $chat.clientHeight >= $chat.scrollHeight - 10)
-    $chat.insertAdjacentHTML('beforeend', value)
+
+    for (const item of data.items) {
+      $chat.insertAdjacentHTML('beforeend', `
+        <div class="message">
+          <img class="icon" src="${item.icon}">
+          <span class="name">${item.name}</span>
+          <span class="body">${item.body}</span>
+        </div>
+      `)
+    }
 
     if (isBottom) {
       requestAnimationFrame(() => $chat.scrollTop = 9999999)
@@ -55,7 +64,7 @@ document.head.insertAdjacentHTML('beforeend', `
     display: none;
   }
 
-  .chat .comment {
+  .chat .message {
     position: relative;
     margin: 4px 0;
     padding: 4px 0 4px 40px;
@@ -73,12 +82,7 @@ document.head.insertAdjacentHTML('beforeend', `
   }
 
   .chat .name {
-    display: inline;
     color: #aaa;
   }
-
-  .chat .body {
-    display: inline;
-  }
-  </style>
+</style>
 `)
