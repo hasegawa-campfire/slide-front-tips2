@@ -2,9 +2,21 @@
 
 <h1>画像検出や音声認識など</h1>
 
-<p>
-  見出し文章
-</p>
+<code title="カメラ取り込み"
+> $video.srcObject = await navigator.mediaDevices.getUserMedia({ video: true })
+</code>
+
+<code title="顔検出"
+> const faceDetector = new FaceDetector()
+  const faces = await faceDetector.detect($video)
+  console.log(faces[0].boundingBox)
+</code>
+
+<code title="音声認識"
+> const recognition = new SpeechRecognition()
+  recognition.onresult = (e) => console.log(e.results[0][0].transcript)
+  recognition.start()
+</code>
 
 <div class="slide-note">
   オマケです。画像検出や音声認識はブラウザ上でも出来ます、という紹介です。
@@ -14,3 +26,37 @@
 
   ちなみに画像検出は、テキストやQRコードの検出もあるようです。顔よりは幾分、実用的な気がしますね。
 </div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+code {
+  position: relative;
+  display: block;
+  margin-top: 48px;
+  padding: 32px 32px 32px 260px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 30px #00000028;
+  white-space: pre-line;
+  font-family: 'Roboto Mono', 'Noto Sans JP', monospace;
+  font-size: 25px;
+  line-height: 1.8;
+  outline: none;
+  cursor: text;
+}
+
+code::before {
+  content: attr(title);
+  display: block;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Noto Sans JP', monospace;
+  font-size: 22px;
+  padding: 3px 12px;
+  border-radius: 8px;
+  background-image: var(--gradient-linear);
+  color: var(--color-text-invert);
+}
+</style>

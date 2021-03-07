@@ -42,3 +42,7 @@ textarea {
 a {
   color: var(--color-blue);
 }
+
+[hidden] {
+  display: none !important;
+}
