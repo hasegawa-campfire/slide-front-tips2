@@ -37,9 +37,9 @@ document.head.insertAdjacentHTML('beforeend', `
     position: relative;
     width: 1100px;
     border: 32px #fff solid;
-    border-radius: 10px;
+    border-radius: var(--radius-card);
     background-color: #fff;
-    box-shadow: 0 0 30px #00000028;
+    box-shadow: var(--shadow-card);
     overflow: hidden;
   }
 

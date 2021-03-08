@@ -9,6 +9,8 @@
   --color-text-invert: #fff;
   --color-text-light: #b3b3b3;
   --color-bg-light: #eee;
+  --shadow-card: 4px 4px 24px #00000030;
+  --radius-card: 10px;
 }
 
 *,

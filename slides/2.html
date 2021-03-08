@@ -3,10 +3,13 @@
 <h1>自己紹介</h1>
 
 <div class="flex">
-  <img class="thumbnail">
+  <img class="thumbnail" src="./images/profile.png">
   <ul>
-    <li>フロントエンジニア</li>
-    <li>長谷川晃一</li>
+    <li>長谷川 晃一</li>
+    <li>Webフロントエンジニア</li>
+    <li>ブラウザネイティブが好きです</li>
+    <li>CAMPFIREアドベントカレンダーで<br><a href="https://qiita.com/koichi-hasegawa/items/1273eb88782e0f1d2835" target="_blank">ミニゲーム</a>を公開しました</li>
+    <li class="twitter">@hsgwkt</li>
   </ul>
 </div>
 
@@ -18,11 +21,42 @@
   .flex {
     display: flex;
   }
+
   .thumbnail {
     margin-top: 48px;
-    margin-right: 100px;
+    margin-right: 64px;
     flex: none;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  ul {
+    list-style: none;
+    line-height: 1.8em;
+    padding: 0 1em 0 2.5em;
+    text-shadow: 0px 0px 8px #fff, 0px 0px 8px #fff;
+  }
+
+  li {
+    position: relative;
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    left: -1.8em;
+    top: 0.15em;
+    display: block;
+    height: 1.5em;
+    width: 1.5em;
+    -webkit-mask: url(./images/campfire-icon.svg) no-repeat center/contain;
+    background-color: currentColor;
+    background-image: var(--gradient-linear);
+  }
+
+  .twitter::before {
+    -webkit-mask: url(./images/twitter.png) no-repeat center/contain;
   }
 </style>

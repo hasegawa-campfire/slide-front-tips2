@@ -4,8 +4,12 @@ html {
   background-position: right 50px top 50px, 0% 22%;
 }
 
+p {
+  text-shadow: 0px 0px 8px #fff, 0px 0px 8px #fff;
+}
+
 .playground {
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   overflow: hidden;
   display: grid;
   grid-template-columns: auto auto auto auto 1fr;
@@ -13,7 +17,7 @@ html {
   padding: 32px;
   background-color: #fff;
   height: 450px;
-  box-shadow: 0 0 30px #00000028;
+  box-shadow: var(--shadow-card);
 }
 
 .preview {
