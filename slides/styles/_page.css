@@ -44,3 +44,27 @@ h1::after {
   background-image: var(--gradient-linear);
   border-radius: 999px;
 }
+
+ul {
+  list-style: none;
+  line-height: 1.8em;
+  padding-left: 1.8em;
+  text-shadow: 0px 0px 8px #fff, 0px 0px 8px #fff;
+}
+
+li {
+  position: relative;
+}
+
+li::before {
+  content: '';
+  position: absolute;
+  left: -1.8em;
+  top: 0.15em;
+  display: block;
+  height: 1.5em;
+  width: 1.5em;
+  -webkit-mask: url(../images/campfire-icon.svg) no-repeat center/contain;
+  background-color: currentColor;
+  background-image: var(--gradient-linear);
+}

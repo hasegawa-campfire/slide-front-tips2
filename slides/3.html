@@ -9,7 +9,7 @@
     <li>主にCSS、あとJavaScript</li>
   </ul>
   <ul>
-    <li>IEは常に対象外です</li>
+    <li class="ie">IEは常に対象外です</li>
   </ul>
 </div>
 
@@ -27,7 +27,16 @@
     margin: auto;
     width: max-content;
     height: max-content;
-    line-height: 1.7em;
     font-size: 54px;
+  }
+
+  .ie::before {
+    -webkit-mask-image: url(./images/ie-logo.svg);
+    animation: blink 1s step-end infinite alternate;
+  }
+
+  @keyframes blink {
+    11%,20%,31%,40%,100% { opacity: 0.2; }
+    0%,10%,21%,30%,41%,49% { opacity: 0.5; }
   }
 </style>

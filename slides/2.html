@@ -24,7 +24,7 @@
 
   .thumbnail {
     margin-top: 48px;
-    margin-right: 64px;
+    margin-right: 100px;
     flex: none;
     width: 500px;
     height: 500px;
@@ -32,31 +32,7 @@
     box-shadow: var(--shadow-card);
   }
 
-  ul {
-    list-style: none;
-    line-height: 1.8em;
-    padding: 0 1em 0 2.5em;
-    text-shadow: 0px 0px 8px #fff, 0px 0px 8px #fff;
-  }
-
-  li {
-    position: relative;
-  }
-
-  li::before {
-    content: '';
-    position: absolute;
-    left: -1.8em;
-    top: 0.15em;
-    display: block;
-    height: 1.5em;
-    width: 1.5em;
-    -webkit-mask: url(./images/campfire-icon.svg) no-repeat center/contain;
-    background-color: currentColor;
-    background-image: var(--gradient-linear);
-  }
-
   .twitter::before {
-    -webkit-mask: url(./images/twitter.png) no-repeat center/contain;
+    -webkit-mask-image: url(./images/twitter-logo.png);
   }
 </style>
