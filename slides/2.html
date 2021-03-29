@@ -13,7 +13,28 @@
   </ul>
 </div>
 
+<div class="dialog game">
+  <iframe src="about:blank"></iframe>
+</div>
+
 <script src="scripts/page.js"></script>
+<script type="module">
+  const $dialog = document.querySelector('.game')
+  const $iframe = document.querySelector('.game iframe')
+
+  const observer = new MutationObserver(records => {
+    if ($dialog.classList.contains('active') && $iframe.src === 'about:blank') {
+      $iframe.src = 'https://hasegawa-campfire.github.io/fire-runner-san/'
+    } else if (!$dialog.classList.contains('active') && $iframe.src !== 'about:blank'){
+      $iframe.src = 'about:blank'
+    }
+  })
+
+  observer.observe($dialog, {
+    attributes: true,
+    attributeFilter: ['class']
+  })
+</script>
 
 <style>
   .row {
@@ -33,18 +54,28 @@
   .twitter::before {
     -webkit-mask-image: url(./images/twitter-logo.png);
   }
+
+  .game {
+    transform: scale(1.5);
+  }
+
+  .game iframe {
+    border: none;
+    width: 640px;
+    height: 320px;
+  }
 </style>
 
 <div class="slide-note">
   はじめまして。長谷川晃一です。
   WebのフロントエンドのエンジニアとしてCAMPFIREで作業をしています。
 
-  CAMPFIREでもVue.jsやTypeScript、SASSといったWebフロントの定番どころは抑えていますが、私個人としては素のJavaScriptや素のCSSが好きです。
-  これは要するに私はブラウザのちからで何かをすることが好きで、だからその標準語やWEB標準仕様といったものが好きなんだろうと、最近はそう思っています。
+  CAMPFIREでもVue.jsやTypeScript、SASSといったWebフロントの定番どころは使われていますが、私個人としては素のJavaScriptや素のCSSも大好きです。
+  これは要するに私はブラウザのちからで何かをすることが好きで、だからその標準語やWEB標準仕様といったものが好きなのではないかなと、そう思っています。
   なので、もし各社モダンブラウザにDartが載っているそんな世界があったなら、きっと私の趣味の一つはDartだったんじゃないでしょうか。
 
   ちなみに去年の終わりにあったCAMPFIREのアドベントカレンダーで、簡単なミニゲームを公開しました。良ければ遊んでみてください。
-  こんなゲームです。とにかく走り抜けて、アイテムを取って加速して、高得点を目指す。シンプルなランゲームですね。
+  <span onclick="slideWindow.toggleDialog('.game')">こんなゲーム</span>です。とにかく走り抜けて、アイテムを取って加速して、高得点を目指す。シンプルなランゲームですね。
 
   実はこれ、素のHTMLや素のCSS、素のJavaScriptで作られています。
   ライブラリやビルドの類も使っていません。ただエディターで書いて保存しただけのシンプルな作りをしています。

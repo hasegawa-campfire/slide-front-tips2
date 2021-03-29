@@ -45,7 +45,7 @@ function updateNote() {
   if (noteWindow) {
     noteWindow.document.body.innerHTML = ''
     if ($currentSlide.$note) {
-      noteWindow.document.body.append($currentSlide.$note)
+      noteWindow.document.body.append(noteWindow.document.importNode($currentSlide.$note, true))
     }
   }
 }
@@ -84,22 +84,19 @@ function listenSlideEvents(target) {
     if (e.target.closest('code,input,textarea')) return
     if (e.key === 'ArrowLeft') prevPage()
     if (e.key === 'ArrowRight') nextPage()
-    if (e.key === 'n' && (!noteWindow || noteWindow.closed)) {
-      noteWindow = open('', 'slide-note', 'width=500,height=600')
-      noteWindow.document.title = `note - ${title}`
-      noteWindow.document.head.insertAdjacentHTML('beforeend',`
-        <style>
-          .slide-note {
-            white-space: pre-line;
-            text-indent: 1em each-line;
-          }
-          .slide-note::first-line {
-            font-size: 0;
-          }
-        </style>
-      `)
-      listenSlideEvents(noteWindow)
-      updateNote()
+    if (e.key === 'n') {
+      if (!noteWindow || noteWindow.closed) {
+        noteWindow = open('', 'slide-note', 'width=500,height=600')
+        noteWindow.document.title = `note - ${title}`
+        listenSlideEvents(noteWindow)
+        updateNote()
+        Object.defineProperty(noteWindow, 'slideWindow', {
+          get: () => $currentSlide?.contentWindow,
+          configurable: true,
+        })
+      } else {
+        noteWindow.focus()
+      }
     }
   })
 }

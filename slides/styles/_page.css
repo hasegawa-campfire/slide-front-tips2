@@ -68,7 +68,3 @@ li::before {
   background-color: currentColor;
   background-image: var(--gradient-linear);
 }
-
-.slide-note {
-  display: none;
-}
