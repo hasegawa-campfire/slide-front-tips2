@@ -5,7 +5,7 @@ html {
 }
 
 p {
-  text-shadow: 0px 0px 8px #fff, 0px 0px 8px #fff;
+  filter: url(#text-stroke);
 }
 
 .playground {

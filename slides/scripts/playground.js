@@ -45,14 +45,12 @@ pre.console-log + pre.console-log::before {
 const $ = (sel, el = document) => el.querySelector(sel)
 const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel))
 console.log = (...values) => {
-  for (const value of values) {
-    const pre = document.createElement('pre')
-    pre.className = 'console-log'
-    pre.textContent = value && (value.constructor === Object || !value.constructor)
-      ? JSON.stringify(value, null, '  ')
-      : String(value)
-    document.body.append(pre)
-  }
+  const pre = document.createElement('pre')
+  pre.className = 'console-log'
+  pre.textContent = values.map((v) => {
+    return v && (v.constructor === Object || !v.constructor) ? JSON.stringify(v, null, '  ') : String(v)
+  }).join(' ')
+  document.body.append(pre)
 }
 </script>
 `

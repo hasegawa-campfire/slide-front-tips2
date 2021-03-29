@@ -19,12 +19,27 @@
   </style>
 </template>
 
+<script src="scripts/page.js"></script>
 <script src="scripts/playground.js"></script>
 
 <div class="slide-note">
   [Editor's Draft]
   NG: Safari, EDGE(要フラグ)
 
-  しゃべる内容２
-  PostCSSを使おう
+  1つ目。
+  inset は top, right, bottom, leftをまとめて指定するショートハンド的なプロパティです。
+
+  なので例えば、position を absolute や fixed にして inset 0 にすれば、それだけで オーバーレイ的なことが出来ます。
+  これはちょっとした感動ですね。
+
+  これまで真面目に top, right, bottom, left と書いてこなかったでしょうか。
+  私は書いてました。
+
+  整備された現場であれば sass の mixin などでまとめているかもしれませんが、出来るのなら現場固有ではない標準語で書いて行きたいものです。
+
+  ちなみにこちらはまだ Editor's Draft の状態なのでご注意ください。
+  まあ、こちらは、というか、今回ご紹介するCSSは全てそうなんですが。
+
+  とりあえず inset はまだ Safari では使えません。EDGEの場合はフラグが必要です。
+  今使うのであれば PostCSS などで変換しておくのが無難でしょう。
 </div>

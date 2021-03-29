@@ -8,21 +8,56 @@
 </p>
 
 <template class="playground" data-tab="script">
+  <div class="buttons">
+    <button id="$log">log</button>
+    <button id="$release">buffer = null</button>
+  </div>
+
   <script>
-    let buffer = new ArrayBuffer(100000000)
+    let buf = new ArrayBuffer(100_000_000)
+    const ref = new WeakRef(buf)
 
-    const ref = new WeakRef(buffer)
-    console.log(ref.deref())
+    $log.onclick = () => {
+      console.log(`ref: ${ref.deref()} \nbuf: ${buf}`)
+    }
 
-    buffer = null
-    setTimeout(() => console.log(ref.deref()), 300)
+    $release.onclick = () => {
+      buf = null
+    }
   </script>
+
+  <style>
+    .buttons {
+      position: sticky;
+      top: 0;
+      background-color: #fff;
+      z-index: 1;
+      box-shadow: 0 0 0 4px #fff;
+    }
+  </style>
 </template>
 
+<script src="scripts/page.js"></script>
 <script src="scripts/playground.js"></script>
 
 <div class="slide-note">
   NG: Safari
 
-  しゃべる内容２
+  WeakRefは弱参照を作ります。
+  JavaScriptには既にWeakMapやWeakSetがありますが、これはオブジェクト単体に対して弱い参照が作れます。
+
+  この場合で言うと、まずbufferというデータがあって、それをrefからもWeakRefを使って参照します。
+  これはbufferとref、両方からこのデータを見ている状態です。
+  これですね。見れています。
+
+  しかしbufferがデータの参照をやめると、まだrefからは見ているにも関わらずメモリが開放されます。
+  これが弱い参照になります。消えてますね。undefined。
+
+  例えばキャッシュの制御などに使えるのではないでしょうか。
+  もしファイルパスに対応したキャッシュデータを持つなら、mapのkeyを文字列にして、valueを弱参照にしたくなります。
+  key側の弱参照であればWeakMapが使えますが、value側であればWeakRefが必要になることでしょう。
+
+  ただ、WeakRefは便利ですが、使うなら最小限にして、慎重に検討した上で使いましょう、とよく警告されます。
+  少なくとも開放されるタイミングについてはエンジンの気分次第なので、決してそこには依存しないこと。
+  開放されるかもしれないし、されないかもしれない。それが大前提になります。
 </div>
