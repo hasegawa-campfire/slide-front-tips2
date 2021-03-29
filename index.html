@@ -23,7 +23,6 @@ const $slides = Array.from({ length: pageTotal }).map((_, i) => {
     if (!isBlank(el)) {
       listenSlideEvents(el.contentWindow)
       el.$note = $('.slide-note', el.contentWindow.document)
-      el.$note?.remove()
       el.contentWindow.document.body.style.setProperty('--page', `'${i + 1}'`)
     }
   })
