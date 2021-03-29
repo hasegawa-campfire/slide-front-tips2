@@ -72,11 +72,12 @@ a {
   z-index: 1;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.3s linear, top 0s 0.3s;
 }
 
 .dialog.active {
   opacity: 1;
   top: 0;
   pointer-events: all;
-  transition: opacity 0.3s, top 0.3s;
+  transition: opacity 0.3s linear, top 0.3s;
 }

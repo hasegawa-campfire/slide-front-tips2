@@ -21,8 +21,33 @@
   </script>
 </template>
 
+<div class="dialog android" hidden>
+  <img src="images/share-android.png">
+</div>
+
+<div class="dialog ios" hidden>
+  <img src="images/share-ios.png">
+</div>
+
+<div class="dialog win large" hidden>
+  <img src="images/share-win.png">
+</div>
+
+<div class="dialog mac" hidden>
+  <img src="images/share-mac.png">
+</div>
+
 <script src="scripts/page.js"></script>
 <script src="scripts/playground.js"></script>
+
+<style>
+  .dialog img {
+    height: 400px;
+  }
+  .dialog.large img {
+    height: 600px;
+  }
+</style>
 
 <div class="slide-note">
   [Draft]
@@ -32,7 +57,7 @@
   なのでWebページによくあるtwitterやfacebookのシェアボタンの代わりになるものでは無いですが、ユーザーによってはそれ以上に使い慣れて機能的なメニューになる場合もあるかもしれません。
   割と以前からあるAPIで、特にモバイルは先んじてサポートされていましたが、今でもPCでのサポートが進みつつあります。
 
-  ちなみにこちらがAndroidのメニュー例、そしてiPhone、Windows、mac。
+  ちなみにこちらが<span onclick="slideWindow.toggleDialog('.android')">Android</span>のメニュー例、そして<span onclick="slideWindow.toggleDialog('.ios')">iOS</span>、<span onclick="slideWindow.toggleDialog('.win')">Windows</span>、<span onclick="slideWindow.toggleDialog('.mac')">macOS</span>。
 
   firefoxやmacのchromeはまだ対応していません。
 </div>

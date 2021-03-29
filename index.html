@@ -112,6 +112,7 @@ $('.slides').style.width = `${pageWidth}px`
 $('.slides').style.height = `${pageHeight}px`
 $('.slides').append(...$slides)
 window.addEventListener('resize', resize)
+window.addEventListener('domcontentloaded', resize)
 window.addEventListener('beforeunload', () => {
   noteWindow?.close()
   $currentSlide?.contentWindow?.dispatchEvent(new CustomEvent('slide-fin'))

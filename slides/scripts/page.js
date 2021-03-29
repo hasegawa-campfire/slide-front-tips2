@@ -53,4 +53,8 @@ addEventListener('DOMContentLoaded', () => {
       }
     </style>
   `)
+
+  for (const el of document.querySelectorAll('.dialog')) {
+    el.hidden = false
+  }
 })

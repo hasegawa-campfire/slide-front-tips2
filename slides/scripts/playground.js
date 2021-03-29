@@ -95,7 +95,7 @@ for (const $temp of $$('template.playground')) {
   const $tabs = $$('.tab', $playground)
   const $codes = $$('code', $playground)
 
-  function init() {
+  const init = () => {
     const node = $temp.cloneNode(true)
     $codes[1].textContent = $$('style', node.content).map(el => (el.remove(), flatIndent(el.innerHTML))).join('')
     $codes[2].textContent = $$('script', node.content).map(el => (el.remove(), flatIndent(el.innerHTML))).join('')
@@ -111,14 +111,14 @@ for (const $temp of $$('template.playground')) {
     }
   }
 
-  function selectTab(index) {
+  const selectTab = (index) => {
     for (let i  = 0; i < 3; i++) {
       $tabs[i].classList.toggle('active', i === index)
       $codes[i].classList.toggle('active', i === index)
     }
   }
 
-  function updatePreview() {
+  const updatePreview = () => {
     URL.revokeObjectURL($preview.contentWindow.location.href)
     const html = `
       ${suffixPreview}
@@ -131,7 +131,7 @@ for (const $temp of $$('template.playground')) {
     $preview.contentWindow.location.replace(url)
   }
 
-  function fixedUrl(html) {
+  const fixedUrl = (html) => {
     const node = document.createElement('template')
     node.innerHTML = html
     for (const el of node.content.querySelectorAll('img')) {
