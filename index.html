@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="favicon.png" type="image/png">
 
 <div class="slides"></div>
@@ -102,17 +105,20 @@ function listenSlideEvents(target) {
 }
 
 function resize() {
+  const el = $('.slides')
+  el.hidden = true
   const scale = (window.innerWidth / window.innerHeight > pageWidth / pageHeight)
     ? window.innerHeight / pageHeight
     : window.innerWidth / pageWidth
-    $('.slides').style.transform = `translate(-50%, -50%) scale(${scale})`
+  el.style.transform = `translate(-50%, -50%) scale(${scale})`
+  el.hidden = false
 }
 
 $('.slides').style.width = `${pageWidth}px`
 $('.slides').style.height = `${pageHeight}px`
 $('.slides').append(...$slides)
 window.addEventListener('resize', resize)
-window.addEventListener('domcontentloaded', resize)
+window.addEventListener('DOMContentLoaded', resize)
 window.addEventListener('beforeunload', () => {
   noteWindow?.close()
   $currentSlide?.contentWindow?.dispatchEvent(new CustomEvent('slide-fin'))
