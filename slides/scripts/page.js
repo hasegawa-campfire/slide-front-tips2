@@ -54,6 +54,10 @@ addEventListener('DOMContentLoaded', () => {
     </style>
   `)
 
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="hashtag">#CAMPFIRE_MEETUP</div>
+  `)
+
   for (const el of document.querySelectorAll('.dialog')) {
     el.hidden = false
   }
