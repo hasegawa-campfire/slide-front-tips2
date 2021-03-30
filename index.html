@@ -15,8 +15,11 @@
 <meta name="twitter:site" content="@hsgwkt" />
 <title>WebフロントTIPS</title>
 <link rel="icon" href="favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-<div class="slides"></div>
+<div class="slides">
+  <div class="hashtag">#CAMPFIRE_MEETUP</div>
+</div>
 
 <script type="module">
 import { pageTotal, getPageUrl, pageWidth, pageHeight } from './config.js'
@@ -172,4 +175,48 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+
+.hashtag {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 60px 0 40px;
+  color: #4d4a4a;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 60px;
+  line-height: 1.5;
+  box-shadow: 4px 4px 20px #00000030;
+  background-color: #fff;
+  border-radius: 0 16px 16px 0;
+  overflow: hidden;
+  z-index: 99;
+  text-shadow: 4px 4px 0 #eee;
+  box-sizing: border-box;
+}
+
+.hashtag::before,
+.hashtag::after {
+  content: '';
+  display: inline-block;
+  vertical-align: baseline;
+  width: 1.2em;
+  height: 1.2em;
+  -webkit-mask-image: url(./slides/images/twitter-logo.png);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  background-color: currentColor;
+  margin-right: 0.4em;
+}
+
+.hashtag::after {
+  position: absolute;
+  left: 44px;
+  top: calc(calc(50% - 0.6em) + 4px);
+  background-color: #eee;
+  z-index: -1;
+}
+
 </style>
