@@ -41,6 +41,7 @@ export function start() {
 
 export function stop() {
   abortController?.abort()
+  $chat.innerHTML = ''
 }
 
 document.head.insertAdjacentHTML('beforeend', `
@@ -52,7 +53,7 @@ document.head.insertAdjacentHTML('beforeend', `
     margin-left: 32px;
     border: 32px #fff solid;
     border-left-width: 24px;
-    border-radius: var(--radius-card);
+    border-radius: 10px;
     background-color: #fff;
     box-shadow: var(--shadow-card);
     font-size: 24px;
